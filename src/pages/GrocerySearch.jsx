@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
+import SearchBar from "../components/SearchBar"
 import axios from "axios";
-import SearchBar from "../components/SearchBar";
 
-export default function Groceries() {
+export default function GroceriesSearch() {
   const [groceries, setGroceries] = useState([]);
   useEffect(() => {
     async function fetchGroceries() {
@@ -26,8 +26,8 @@ export default function Groceries() {
   }, [groceries]);
   return (
     <div>
-      <h1>Groceries</h1>
-      <SearchBar>Search For Groceries</SearchBar>
+          <h1>Groceries</h1>
+          <SearchBar>Search For Groceries</SearchBar>
       <GroceryList items={groceries} />
     </div>
   );

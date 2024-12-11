@@ -1,12 +1,16 @@
-export const sortAscending = (items) => {
-return [...items].sort((a,b => ))
+export const sortAscending = items => {
+    return [...items].sort((a, b) => a.price - b.price);
 };
 
+
+
+
 export const filterByCategory = (items, category) => {
-    if (!category || category === all) {
-        return items;
+    if (!category || category == 'all') {
+        return items; //early return
     }
-    return items.fliter(item => {
-        return item.category.toLowercase() === category 
-    })
+    return items.filter(item => {
+        return item.category.toLowerCase() === category.toLowerCase();
+    });
+
 }

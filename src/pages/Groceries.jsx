@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
+import { sortAssending, filterByCategory } from "../utils/groceryFunctions";
 import axios from "axios";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
+  const [filteredItems, setFIlteredItems] = useState([])
   useEffect(() => {
     async function fetchGroceries() {
       try {
@@ -23,10 +25,26 @@ export default function Groceries() {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
+
+  const handelSort = () => {
+    const sorted = sortAscending(groceries);
+    setFIlteredItems(sorted);
+  }
+  const handleCategoryFilter = (category) => {
+    const filtered = filteredByCategory(groceries, category);
+    setFIlteredItems(filtered);
+  }
   return (
     <div>
+      <div>
+        <button onClick={handleSort}>Sort by price</button>
+        <select onChange={e => handleCaegoryFilter(e.targer.value)}>
+          <option value="all">All Items</option>
+          <option value="dairy">Dairy Products</option>
+        </select>
+      </div>
       <h1>Groceries</h1>
-      <GroceryList items={groceries} />
+      <GroceryList items={filteredItems} />
     </div>
   );
 }

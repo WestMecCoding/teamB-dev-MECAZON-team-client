@@ -5,31 +5,38 @@ import axios, { formToJSON } from "axios";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([])
+  const [filteredItems, setFilteredItems] = useState([]);
   useEffect(() => {
     async function fetchGroceries() {
       try {
         const response = await axios.get("/dummy-data/groceries.json");
-
-        // set the state of the groceries to the response.data
         setGroceries(response.data);
         setFilteredItems(response.data);
       } catch (err) {
-        console.error("something went wrong fetching groceries", err);
+        console.error("Something went wrong fetching groceries", err);
       }
     }
     fetchGroceries();
   }, []);
-
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm) {
+      setFilteredGroceries(groceries);
+      return;
+    }
+    const results = groceries.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredGroceries(results);
+  };
   useEffect(() => {
-    // console.log(groceries);
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
   return (
     <div>
       <h1>Groceries</h1>
-      <GroceryList items={groceries} />
+      <SearchBar onSearch={handleSearch} />
+      <GroceryList items={filteredGroceries} />
     </div>
   );
 }

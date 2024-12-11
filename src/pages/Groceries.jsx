@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
-import axios from "axios";
+import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
+import axios, { formToJSON } from "axios";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([])
   useEffect(() => {
     async function fetchGroceries() {
       try {
@@ -11,6 +13,7 @@ export default function Groceries() {
 
         // set the state of the groceries to the response.data
         setGroceries(response.data);
+        setFilteredItems(response.data);
       } catch (err) {
         console.error("something went wrong fetching groceries", err);
       }

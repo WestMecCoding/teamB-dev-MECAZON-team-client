@@ -1,42 +1,48 @@
 import styles from "../styles/Singup.module.css"
 import React, { useState } from 'react';
 
-export default function Signup() {
+const LoginSignup = () => {
+  const [action,setAction] = useState("Login")
 
-    return (
-      <div>
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Username:</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-    );
+  return (
+   <div classname='container'>
 
-}
+
+     <div className='header'>
+        <div className="text">{action}</div>
+           <div className = "underline"></div>
+     </div>
+     <div className='inputs'>
+
+       <img src="" alt=" " />
+        <input type="text" />
+
+       </div>
+
+
+       <div className = "input">
+       <img src="" alt=" " />
+       <input type= "email"/>
+         </div>
+
+
+       <div className = "input">
+       <img src="" alt=" " />
+       <input type= "password"/>
+           </div>
+
+     </div>
+      {action==="Sign Up"?<div></div>: <div className = "forgot-password"> Lost Password? <span>Click Here !</span> </div> }
+     <div className="submit-container ">
+        <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up")}}> </div>
+       <div className={action==="Login"?"submit gray":"submit"} onClick={() => { setAction("Login")}}>Login</div>
+
+     </div>
+
+
+
+   </div>
+
+ );
+
+};

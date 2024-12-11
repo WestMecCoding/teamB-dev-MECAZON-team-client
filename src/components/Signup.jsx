@@ -12,12 +12,11 @@ const LoginSignup = () => {
         <div className="text">{action}</div>
            <div className = "underline"></div>
      </div>
-     <div className='inputs'>
-
-       <img src="" alt=" " />
-        <input type="text" />
-
-       </div>
+      <div className='inputs'>
+        {action === "Login" ? <div></div> : <div className="input">
+          <img src="" alt=" " />
+          <input placeholder = "Name" type="text" />
+        </div>}
 
 
        <div className = "input">
@@ -32,7 +31,8 @@ const LoginSignup = () => {
            </div>
 
      </div>
-      {action==="Sign Up"?<div></div>: <div className = "forgot-password"> Lost Password? <span>Click Here !</span> </div> }
+
+      {action === "Sign Up" ?<div></div>: <div className="forgot-password"> Lost Password? <span>Click Here !</span>  </div>}
      <div className="submit-container ">
         <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up")}}> </div>
        <div className={action==="Login"?"submit gray":"submit"} onClick={() => { setAction("Login")}}>Login</div>
@@ -41,8 +41,8 @@ const LoginSignup = () => {
 
 
 
-   </div>
+   </div >
 
- );
+ )
 
-};
+}

@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`/api/search?q=${searchTerm}`);
-      setResults(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearch(value);
   };
 
   return (
@@ -19,14 +14,9 @@ export default function SearchBar() {
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleInputChange}
+        placeholder="Search for groceries..."
       />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
-        {results.map((result) => (
-          <li key={result.id}>{result.name}</li>
-        ))}
-      </ul>
     </div>
   );
 }

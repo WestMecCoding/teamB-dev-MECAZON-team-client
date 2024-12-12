@@ -3,10 +3,12 @@ import React, { useState } from "react";
 export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    onSearch(value);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onSearch({
+        term: searchTerm
+      });
+    }
   };
 
   return (
@@ -14,8 +16,9 @@ export default function SearchBar({ onSearch }) {
       <input
         type="text"
         value={searchTerm}
-        onChange={handleInputChange}
-        placeholder="Search for groceries..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyPress}
+        placeholder="Search by name..."
       />
     </div>
   );

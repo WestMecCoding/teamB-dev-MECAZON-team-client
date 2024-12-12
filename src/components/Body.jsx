@@ -1,10 +1,10 @@
 import React from "react";
-import './body.css';
+import styles from '../styles/body.module.css';
 
 const Body= () => {
     return (
-    <div className="body-div">
-
+    <div className={styles.main}>
+content
     </div>
 )
 }

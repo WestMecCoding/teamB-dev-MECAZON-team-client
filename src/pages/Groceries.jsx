@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
 import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
-// import Apple from "./pages/Apple";
+
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 
@@ -46,6 +46,19 @@ export default function Groceries() {
 
     setFilteredGroceries(results);
   };
+
+
+
+
+
+  // function ItemClick() {
+  //   const handleClick = (items) => {
+  //     <Link to="/ItemPage"></Link>;
+  //   };
+  // }
+
+
+
   useEffect(() => {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
@@ -77,6 +90,6 @@ const handleCategoryFilter = (category) => {
       <h1>Groceries</h1>
       <SearchBar onSearch={handleSearch} />
       <GroceryList items={filteredItems} />
-    </div>
-  );
+      {/* onClick={ItemClick} */}
+    </div>;
 }

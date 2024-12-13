@@ -9,7 +9,7 @@ export default function App() {
   return (
       <Router>
         <Navbar />
-        <Routes>
+      <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/groceries" element={<Groceries />} />
         </Routes>

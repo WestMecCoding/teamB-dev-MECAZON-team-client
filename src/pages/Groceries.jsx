@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
 import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
+// import Apple from "./pages/Apple";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
-  const [filteredGroceries, setFilteredGroceries] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   useEffect(() => {
     async function fetchGroceries() {
       try {
         const response = await axios.get("/dummy-data/groceries.json");
         setGroceries(response.data);
-        setFilteredGroceries(response.data);
+        setFilteredItems(response.data);
       } catch (err) {
         console.error("Something went wrong fetching groceries", err);
       }
@@ -21,13 +22,13 @@ export default function Groceries() {
   }, []);
   const handleSearch = (searchTerm) => {
     if (!searchTerm) {
-      setFilteredGroceries(groceries);
+      setFilteredItems(groceries);
       return;
     }
     const results = groceries.filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredGroceries(results);
+    setFilteredItems(results);
   };
   useEffect(() => {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
@@ -37,11 +38,11 @@ export default function Groceries() {
 
 const handleSort = () => {
   const sorted = sortAscending(groceries);
-  setFilteredGroceries(sorted);
+  setFilteredItems(sorted);
 };
 const handleCategoryFilter = (category) => {
   const filtered = filterByCategory(groceries, category);
-  setFilteredGroceries(filtered);
+  setFilteredItems(filtered);
 };
   return (
     <div>
@@ -52,7 +53,7 @@ const handleCategoryFilter = (category) => {
       </select>
       <h1>Groceries</h1>
       <SearchBar onSearch={handleSearch} />
-      <GroceryList items={filteredGroceries} />
+      <GroceryList items={filteredItems} />
     </div>
   );
 }

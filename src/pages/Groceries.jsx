@@ -77,6 +77,3 @@ const handleCategoryFilter = (category) => {
     </div>
   );
 }
-
-
-

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+import React, { useState } from "react";
+>>>>>>> Rylan
 
 export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,4 +26,8 @@ export default function SearchBar({ onSearch }) {
       />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Rylan

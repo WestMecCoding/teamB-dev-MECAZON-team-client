@@ -78,5 +78,5 @@ const handleCategoryFilter = (category) => {
       <SearchBar onSearch={handleSearch} />
       <GroceryList items={filteredItems} />
     </div>
-  );
+  
 }

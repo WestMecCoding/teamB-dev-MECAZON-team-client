@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from '../styles/footer.module.css';
-import fb from '../assets/fbimg.png';
-import x from '../assets/ximg.png';
-import linkedin from '../assets/linkedinimg.png';
-import insta from '../assets/instaimg.png';
+import styles from '../styles/Footer.module.css';
+// import fb from '../assets/fbimg.png';
+// import x from '../assets/ximg.png';
+// import linkedin from '../assets/linkedinimg.png';
+// import insta from '../assets/instaimg.png';
 
 
 const Footer = () => {
     return (
         <div className={styles.main}>
-            <div className="sb__footer section__padding">
-            <div className="sb__footer-links">
-                <div className="sb__footer-links-div">
+            <div className={`${styles.sb__footer} ${styles.section__padding}`}>
+            <div className={styles.sb__footer_links}>
+                <div className="sb__footer_links_div">
                     <h4>For Business</h4>
                     <a href="/employer">
                         <p>Employeer</p>
@@ -23,7 +23,7 @@ const Footer = () => {
                         <p>Individual</p>
                     </a>
                 </div>
-                <div className="sb__footer-links-div">
+                <div className="sb__footer_links_div">
                     <a href="./resourses">
                         <p>Resource center</p>
                     </a>
@@ -34,7 +34,7 @@ const Footer = () => {
                         <p>STV</p>
                     </a>
                 </div>
-                <div className="sb__footer-links-div">
+                <div className="sb__footer_links_div">
                     <h4>Company</h4>
                     <a href="/about">
                         <p>About</p>
@@ -49,31 +49,31 @@ const Footer = () => {
                     <p>Contact</p>
                     </a>
                 </div>
-                <div className="sb__footer-links_div">
+                <div className="sb__footer_links_div">
                     <h4>Comming soon on</h4>
                     <div className="socialmedia">
-                        <p><img src={fb} alt=""/></p>
+                        {/* <p><img src={fb} alt=""/></p>
                         <p><img src={x} alt=""/></p>
                         <p><img src={linkedin} alt=""/></p>
-                        <p><img src={insta} alt=""/></p>
+                        <p><img src={insta} alt=""/></p> */}
                     </div>
                 </div>
             </div>
 
             <hr></hr>
 
-            <div className="sb__footer-below">
-                <div className="sb__footer-copyright">
+            <div className="sb__footer_below">
+                <div className="sb__footer_copyright">
                     <p>
-                        @{new Date().getFullyear()} CodeInn. All rights reserved.
+                        
                     </p>
                 </div>
-                <div className="sb_footer-below-links">
+                {/* <div className="sb_footer-below-links">
                     <a href="/terms"><div><p>Terms & Conditions</p></div></a>
                     <a href="/privacy"><div><p>Privacy</p></div></a>
                     <a href="/security"><div><p>Security</p></div></a>
                     <a href="/cookie"><div><p>Cookie Declaration</p></div></a>
-                </div>
+                </div> */}
             </div>
 
                 </div>

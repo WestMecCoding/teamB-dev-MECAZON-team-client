@@ -8,6 +8,7 @@ export default function Navbar() {
       <Link to="/groceries">Groceries</Link>
       <Link to="/Login">Login</Link>
       <Link to= "/Signup" >Signup</Link>
+      <Link to="/shoppingcart"></Link>
     </nav>
   );
 }

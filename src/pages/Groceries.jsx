@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
+import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
   const [filteredGroceries, setFilteredGroceries] = useState([]);
+
   useEffect(() => {
     async function fetchGroceries() {
       try {
         const response = await axios.get("/dummy-data/groceries.json");
         setGroceries(response.data);
-        setFilteredItems(response.data);
+        setFilteredGroceries(response.data);
       } catch (err) {
         console.error("Something went wrong fetching groceries", err);
       }
@@ -19,7 +21,7 @@ export default function Groceries() {
     fetchGroceries();
   }, []);
 
-  const handleSearch = ({ term, category, priceRange }) => {
+  const handleSearch = ({ term }) => {
     let results = groceries;
 
     if (term) {
@@ -27,20 +29,6 @@ export default function Groceries() {
         item.name.toLowerCase().includes(term.toLowerCase())
       );
     }
-
-    if (category) {
-      results = results.filter(
-        (item) => item.category.toLowerCase() === category.toLowerCase()
-      );
-    }
-
-    if (priceRange) {
-      const [min, max] = priceRange;
-      results = results.filter(
-        (item) => item.price >= min && item.price <= max
-      );
-    }
-
     setFilteredGroceries(results);
   };
   useEffect(() => {
@@ -48,15 +36,14 @@ export default function Groceries() {
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
 
-
-const handleSort = () => {
-  const sorted = sortAscending(groceries);
-  setFilteredGroceries(sorted);
-};
-const handleCategoryFilter = (category) => {
-  const filtered = filterByCategory(groceries, category);
-  setFilteredGroceries(filtered);
-};
+  const handleSort = () => {
+    const sorted = sortAscending(groceries);
+    setFilteredGroceries(sorted);
+  };
+  const handleCategoryFilter = (category) => {
+    const filtered = filterByCategory(groceries, category);
+    setFilteredGroceries(filtered);
+  };
   return (
     <div>
       <button onClick={handleSort}>Sort by Price</button>

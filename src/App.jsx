@@ -3,19 +3,22 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Groceries from "./pages/Groceries";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Cart from "./pages/Cart";
 
 import "./App.css";
 export default function App() {
   return (
       <Router>
         <Navbar />
-        <Routes>
+      <Routes>
           <Route path="/" element={<Home />} />
         <Route path="/groceries" element={<Groceries />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup/> } />
+        <Route path='/cart' element={<Cart/>}/>
+
         </Routes>
       </Router>
   );

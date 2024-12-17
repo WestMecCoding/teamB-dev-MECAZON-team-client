@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
+import Modal from "../components/ItemDataModal";
 import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
@@ -7,6 +8,8 @@ import SearchBar from "../components/SearchBar";
 export default function Groceries() {
   const [groceries, setGroceries] = useState([]);
   const [filteredGroceries, setFilteredGroceries] = useState([]);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     async function fetchGroceries() {

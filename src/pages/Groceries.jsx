@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import GroceryList from "../components/GroceryList";
 import { sortAscending, filterByCategory } from "../utils/groceryFunctions";
-
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 
@@ -14,7 +13,7 @@ export default function Groceries() {
       try {
         const response = await axios.get("/dummy-data/groceries.json");
         setGroceries(response.data);
-        setFilteredItems(response.data);
+        setFilteredGroceries(response.data);
       } catch (err) {
         console.error("Something went wrong fetching groceries", err);
       }
@@ -46,36 +45,20 @@ export default function Groceries() {
 
     setFilteredGroceries(results);
   };
-
-
-
-
-
-  // function ItemClick() {
-  //   const handleClick = (items) => {
-  //     <Link to="/ItemPage"></Link>;
-  //   };
-  // }
-
-
-
   useEffect(() => {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
   }, [groceries]);
 
-
-const handleSort = () => {
-  const sorted = sortAscending(groceries);
-  setFilteredItems(sorted);
+  const handleSort = () => {
+    const sorted = sortAscending(groceries);
+    setFilteredGroceries(sorted);
   };
-
-
-const handleCategoryFilter = (category) => {
-  const filtered = filterByCategory(groceries, category);
-  setFilteredItems(filtered);
+  const handleCategoryFilter = (category) => {
+    const filtered = filterByCategory(groceries, category);
+    setFilteredGroceries(filtered);
   };
-
+  return (
     <div>
       <button onClick={handleSort}>Sort by Price</button>
       <select onChange={(e) => handleCategoryFilter(e.target.value)}>
@@ -89,7 +72,7 @@ const handleCategoryFilter = (category) => {
       </select>
       <h1>Groceries</h1>
       <SearchBar onSearch={handleSearch} />
-      <GroceryList items={filteredItems} />
-      {/* onClick={ItemClick} */}
-    </div>;
+      <GroceryList items={filteredGroceries} />
+    </div>
+  );
 }

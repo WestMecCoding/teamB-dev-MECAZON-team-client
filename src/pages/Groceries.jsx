@@ -22,7 +22,7 @@ export default function Groceries() {
     fetchGroceries();
   }, []);
 
-  const handleSearch = ({ term, category, priceRange }) => {
+  const handleSearch = ({ term }) => {
     let results = groceries;
 
     if (term) {
@@ -30,20 +30,6 @@ export default function Groceries() {
         item.name.toLowerCase().includes(term.toLowerCase())
       );
     }
-
-    if (category) {
-      results = results.filter(
-        (item) => item.category.toLowerCase() === category.toLowerCase()
-      );
-    }
-
-    if (priceRange) {
-      const [min, max] = priceRange;
-      results = results.filter(
-        (item) => item.price >= min && item.price <= max
-      );
-    }
-
     setFilteredGroceries(results);
   };
 
@@ -73,8 +59,9 @@ const handleSort = () => {
 
 const handleCategoryFilter = (category) => {
   const filtered = filterByCategory(groceries, category);
-  setFilteredItems(filtered);
-  };
+  setFilteredGroceries(filtered);
+};
+  return (
 
     <div>
       <button onClick={handleSort}>Sort by Price</button>

@@ -20,4 +20,8 @@ export default function SearchBar({ onSearch }) {
       />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> Rylan

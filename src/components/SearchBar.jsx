@@ -22,6 +22,6 @@ export default function SearchBar({ onSearch }) {
   );
 <<<<<<< HEAD
 }
-=======
+
 
 >>>>>>> Rylan

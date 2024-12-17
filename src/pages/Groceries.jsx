@@ -46,6 +46,7 @@ const handleCategoryFilter = (category) => {
   setFilteredGroceries(filtered);
 };
   return (
+
     <div>
       <button onClick={handleSort}>Sort by Price</button>
       <select onChange={(e) => handleCategoryFilter(e.target.value)}>

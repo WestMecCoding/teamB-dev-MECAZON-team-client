@@ -13,6 +13,11 @@ export default function Groceries() {
       try {
         const response = await axios.get("/dummy-data/groceries.json");
         setGroceries(response.data);
+
+        setFilteredItems(response.data);
+
+        setFilteredGroceries(response.data);
+
         setFilteredGroceries(response.data);
       } catch (err) {
         console.error("Something went wrong fetching groceries", err);
@@ -45,6 +50,7 @@ export default function Groceries() {
 
     setFilteredGroceries(results);
   };
+
   useEffect(() => {
     sessionStorage.setItem("groceries", JSON.stringify(groceries));
     console.log(JSON.parse(sessionStorage.getItem("groceries")));
@@ -58,7 +64,16 @@ export default function Groceries() {
     const filtered = filterByCategory(groceries, category);
     setFilteredGroceries(filtered);
   };
+
+
+  setFilteredGroceries(sorted);
+};
+const handleCategoryFilter = (category) => {
+  const filtered = filterByCategory(groceries, category);
+  setFilteredGroceries(filtered);
+};
   return (
+
     <div>
       <button onClick={handleSort}>Sort by Price</button>
       <select onChange={(e) => handleCategoryFilter(e.target.value)}>
@@ -72,7 +87,14 @@ export default function Groceries() {
       </select>
       <h1>Groceries</h1>
       <SearchBar onSearch={handleSearch} />
+
+
+
       <GroceryList items={filteredGroceries} />
-    </div>
-  );
-}
+  </div>
+  )
+
+
+//  <GroceryList items={filteredItems} />
+//       {/* onClick={ItemClick} */}
+//     </div>;

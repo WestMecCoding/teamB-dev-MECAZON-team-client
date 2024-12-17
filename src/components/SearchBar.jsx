@@ -75,6 +75,9 @@ export default function Groceries() {
       <GroceryList items={filteredGroceries} />
     </div>
   );
+<<<<<<< HEAD
+}
+=======
 }
 
 // {

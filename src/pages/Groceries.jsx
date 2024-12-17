@@ -47,6 +47,16 @@ export default function Groceries() {
     const filtered = filterByCategory(groceries, category);
     setFilteredGroceries(filtered);
   };
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedItem(null);
+  };
+
   return (
     <div>
       <button onClick={handleSort}>Sort by Price</button>
@@ -61,7 +71,20 @@ export default function Groceries() {
       </select>
       <h1>Groceries</h1>
       <SearchBar onSearch={handleSearch} />
-      <GroceryList items={filteredGroceries} />
+      <GroceryList items={filteredGroceries} onItemClick={handleItemClick} />
+      <Modal
+        isVisible={isModalVisible}
+        onClose={closeModal}
+        title={selectedItem?.name || "Item Details"}
+      >
+        {selectedItem && (
+          <div>
+            <p>Category: {selectedItem.category}</p>
+            <p>Price: ${selectedItem.price}</p>
+            <button>Add to Cart</button>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

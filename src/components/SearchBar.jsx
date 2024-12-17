@@ -1,4 +1,4 @@
-
+import React, { useState, UseEffect } from "react";
 
 export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -6,7 +6,7 @@ export default function SearchBar({ onSearch }) {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       onSearch({
-        term: searchTerm
+        term: searchTerm,
       });
     }
   };

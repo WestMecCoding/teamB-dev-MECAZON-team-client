@@ -6,12 +6,12 @@ import Groceries from "./pages/Groceries";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
-
+import UserStatusModal from "./components/UserStatusModal";
 import "./App.css";
 export default function App() {
   return (
       <Router>
-        <Navbar />
+      <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
         <Route path="/groceries" element={<Groceries />} />

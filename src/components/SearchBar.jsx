@@ -77,8 +77,7 @@ export default function Groceries() {
   );
 
 }
-=======
-}
+
 
 // {
 //   /* onClick={ItemClick} */

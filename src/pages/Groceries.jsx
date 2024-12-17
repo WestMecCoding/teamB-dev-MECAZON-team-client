@@ -50,35 +50,26 @@ export default function Groceries() {
     const filtered = filterByCategory(groceries, category);
     setFilteredGroceries(filtered);
   };
+   return (
+     <div>
+       <button onClick={handleSort}>Sort by Price</button>
+       <select onChange={(e) => handleCategoryFilter(e.target.value)}>
+         <option value="all">All Items</option>
+         <option value="dairy">Dairy Products</option>
+         <option value="vegetables">Vegetable Products</option>
+         <option value="proteins">Protein Products</option>
+         <option value="fruits">Fruit Products</option>
+         <option value="nuts">Nut Products</option>
+         <option value="grains">Grain Products</option>
+       </select>
+       <h1>Groceries</h1>
+       <SearchBar onSearch={handleSearch} />
+       <GroceryList items={filteredGroceries} />
+     </div>
+   );
 
-
-  setFilteredGroceries(sorted);
 };
-const handleCategoryFilter = (category) => {
-  const filtered = filterByCategory(groceries, category);
-  setFilteredGroceries(filtered);
-};
-  return (
 
-    <div>
-      <button onClick={handleSort}>Sort by Price</button>
-      <select onChange={(e) => handleCategoryFilter(e.target.value)}>
-        <option value="all">All Items</option>
-        <option value="dairy">Dairy Products</option>
-        <option value="vegetables">Vegetable Products</option>
-        <option value="proteins">Protein Products</option>
-        <option value="fruits">Fruit Products</option>
-        <option value="nuts">Nut Products</option>
-        <option value="grains">Grain Products</option>
-      </select>
-      <h1>Groceries</h1>
-      <SearchBar onSearch={handleSearch} />
-
-
-
-      <GroceryList items={filteredGroceries} />
-  </div>
-  )
 
 
 //  <GroceryList items={filteredItems} />
